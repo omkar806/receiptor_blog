@@ -37,7 +37,7 @@ Once developers manage to retrieve and parse the necessary data, they face anoth
 
 Receiptor is a Python package built specifically to address the aforementioned challenges. It simplifies the extraction, parsing, and structuring of Gmail receipt, invoice, and order data, offering developers an easy-to-use interface that abstracts the complex interactions with Gmail’s APIs.
 
-#### How Receiptor Works
+#### How Receiptor Works ?
 
 Receiptor is designed with the developer’s ease of use in mind. Here’s how it streamlines the Gmail data extraction process:
 
@@ -49,8 +49,7 @@ Receiptor provides a clean, straightforward API to interact with Gmail and extra
   ```python
     
     pip install receiptor
-  
-  ```
+    ```
 
 **2. Set Up Gmail Access**
 
@@ -58,7 +57,7 @@ Receiptor requires a Gmail access token, which can be obtained using OAuth2. Thi
 
 **3. Library Usage**
 - **Import required modules**
-```python
+```bash
 
 from receiptor import Receiptor
 from receiptor.llm_parser.gpt_4o_mini_parser.gpt_4o_mini import DocumentStructureExtractor
