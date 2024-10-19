@@ -108,7 +108,7 @@ for data in obj.fetch_receipt_data(access_token=access_token):
         )
         print(structured_data)
 ```
-## Example Output
+## Example Outputs
 
 Main Data
 ```python
