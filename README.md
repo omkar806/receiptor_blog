@@ -45,7 +45,7 @@ Whether you're building the next big fintech app, a simple expense tracker, or a
 
 ---
 
-## Getting Started
+### Getting Started
 
 **1. Fetching and Parsing Data with Minimal Code**
 
