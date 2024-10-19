@@ -47,7 +47,6 @@ Receiptor provides a clean, straightforward API to interact with Gmail and extra
 
 - **Install Receiptor**: The package can be installed via pip, making it accessible to any Python developer:
   ```python
-    
     pip install receiptor
     ```
 
@@ -58,7 +57,6 @@ Receiptor requires a Gmail access token, which can be obtained using OAuth2. Thi
 **3. Library Usage**
 - **Import required modules**
 ```bash
-
 from receiptor import Receiptor
 from receiptor.llm_parser.gpt_4o_mini_parser.gpt_4o_mini import DocumentStructureExtractor
 ```
@@ -75,20 +73,16 @@ Note : org_id is optional , if you are using any organisation project then you m
 
 - **Initialize the Receiptor object**
 ```python
-
 obj = Receiptor()
-
 ```
 - **Set up Gmail access token**
 Obtain a Gmail access token through the OAuth2 flow. Store this token securely.
 
 ```python
-
 access_token = "Your_Gmail_access_token_here"
 ```
 - **Fetch and process receipt data**
 ```python
-
 for data in obj.fetch_receipt_data(access_token=access_token):
     print(data)
     if data.attachments:
@@ -100,7 +94,6 @@ for data in obj.fetch_receipt_data(access_token=access_token):
             raw_text=data.attachments[0].attachment_raw_text ,openai_api_key = "your api key" , org_id = "org id but this is optional"
         )
         print(structured_data)
-
 ```
 - **Example Output**
 
@@ -121,15 +114,11 @@ Main Data
 Attachment Raw Text
 
 ```python
-
 Zomato Food Order: Summary and Receipt
-
-
 ```
 Structured Document Data
 
 ```python
-
 {
 "brand": "brand name",
 "total_cost": "189",
@@ -142,7 +131,6 @@ Structured Document Data
 "payment_method": null,
 "metadata": null
 }
-
 ```
 
 With just these steps, Receiptor handles the complexity of interacting with multiple Gmail APIs, fetching the required emails, and retrieving all relevant information, including attachments.
