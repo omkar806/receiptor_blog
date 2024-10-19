@@ -1,11 +1,5 @@
 # Receiptor: Simplifying Gmail Receipt Extraction for Developers
 
-**Focus Keywords:** Gmail Receipt Extraction, Python Package, Email Data Parsing
-
-**Slug:** receiptor-package-gmail-receipt-extraction
-
-**Meta Description:** Receiptor simplifies Gmail receipt data extraction and structuring using Python, making the process efficient for developers.
-
 ---
 
 ### Overview
