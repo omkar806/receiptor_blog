@@ -12,7 +12,7 @@ I thought to myself, "There has to be a better way. Why should every developer g
 
 ---
 
-### Overview
+## Overview
 
 Receiptor is the culmination of my journey - a straightforward Python-based solution designed to extract, parse, and structure Gmail receipt and invoice data. It's built with one goal in mind: to let developers integrate Gmail receipt data ingestion functionality easily, without the need to juggle through Gmail documentation or spend hours looking at examples.
 
@@ -20,7 +20,7 @@ In today's digital age, Gmail has become a primary tool for tracking purchases, 
 
 ---
 
-### How Receiptor Simplifies the Process
+## How Receiptor Simplifies the Process
 
 Receiptor addresses the challenges I faced head-on:
 
@@ -38,14 +38,14 @@ Receiptor addresses the challenges I faced head-on:
 
 
 ---
-# Why did I Build Receiptor ?
+## Why did I Build Receiptor ?
 
 I built Receiptor because I believe that developers should focus on creating amazing features and applications, not on wrestling with API documentation. By encapsulating my learnings and solutions into this library, I hope to save other developers the time and frustration I experienced.
 Whether you're building the next big fintech app, a simple expense tracker, or anything in between, Receiptor is designed to be your go-to tool for Gmail receipt data extraction. It's my way of contributing to the developer community and making our collective lives a little easier.
 
 ---
 
-### Getting Started
+## Getting Started
 
 **1. Fetching and Parsing Data with Minimal Code**
 
@@ -149,7 +149,7 @@ Structured Document Data
 
 With just these steps, Receiptor handles the complexity of interacting with multiple Gmail APIs, fetching the required emails, and retrieving all relevant information, including attachments.
 
-### Conclusion: Why Receiptor is a Game-Changer for Developers
+## Conclusion: Why Receiptor is a Game-Changer for Developers
 
 Receiptor is more than just a library; it's a solution born from real-world developer challenges.Hope receiptor makes your life easy for build data ingestion pipeline from gmail !!
 I hope that Receiptor helps you build amazing things without the headaches I encountered. 
