@@ -12,24 +12,35 @@ In today’s digital age, Gmail has become a primary tool for communication, man
 
 ### The Pain Points of Extracting Gmail Receipt Data
 
-Ingesting receipt data from Gmail, despite its ubiquity, remains a complex task. Developers often need to navigate Gmail’s APIs, which can be intricate and overwhelming. Let’s explore these pain points in detail:
+Getting receipt information from Gmail is more complex than it might seem at first glance. Let's explore the main obstacles developers face.
 
-#### Navigating the Complicated Gmail API Landscape
+#### Navigating Gmail's API Ecosystem
 
-Gmail’s API ecosystem offers numerous functionalities, but accessing specific receipt data requires understanding several distinct APIs and how they work together. Developers must interact with multiple endpoints to:
+Gmail uses a variety of APIs (Application Programming Interfaces) that developers must interact with. This process involves several steps:
 
-- **List Gmail messages**: Developers use the Gmail API to list messages, filtering by criteria like date, subject, or sender. However, this only provides a list of email IDs, not the actual email content.
-- **Access individual emails**: Once an email ID is retrieved, developers need to call another API to access the email’s content and metadata. This often requires careful handling of API requests and responses.
-- **Parse attachments**: Receipts and invoices are commonly sent as attachments in PDF, image, or other file formats. Extracting and decoding these attachments demands another level of API interaction, requiring specific parsing logic.
-- **Handle pagination**: Gmail’s API uses pagination to manage large sets of emails. Developers need to manage page tokens to ensure that all relevant emails are fetched, which adds complexity.
+- **Querying messages**: Developers use the Gmail API to search for relevant emails. This returns a list of message IDs, not the full email content
+- **Fetching email content**: Another API call is needed to retrieve the actual email body and metadata for each message ID.
+- **Processing attachments**: Receipts are often sent as attachments (PDFs, images, etc.). Developers need to implement attachment parsing logic to extract this data.
+- **Implementing pagination**: For large sets of emails, the API uses pagination. Developers must manage this to ensure all relevant emails are captured.
 
-#### Deciphering API Responses
+#### Parsing API Responses
 
-The responses provided by Gmail’s API are often not straightforward. They include a large amount of metadata, and developers need to extract the essential information like subject lines, email body text, and attachment details. Understanding and filtering through the extensive data provided in these responses is time-consuming and can be error-prone.
+The data returned by Gmail's API is often complex and verbose. Developers need to parse through this information to extract key details like:
+- Subject lines
+- Email body text
+- Attachment Content
 
-#### The Tedious Task of Structuring Extracted Data
+This parsing process can be time-consuming and prone to errors if not handled carefully.
 
-Once developers manage to retrieve and parse the necessary data, they face another challenge: structuring it into a usable format, such as JSON. Structuring data manually, especially from diverse email formats and attachments, can be incredibly tedious. Moreover, this process must be repeated for each new receipt type or source, further complicating data ingestion efforts.
+#### Structuring Extracted Data
+
+Once the relevant data is extracted, developers face the task of structuring it into a usable format (e.g., JSON). This involves:
+- Standardizing data from various email formats
+- Handling different types of attachments
+- Creating a consistent data schema for all receipts
+
+This structuring process often needs to be customized for different receipt types or sources, adding to the complexity.
+In essence, extracting receipt data from Gmail involves a series of intricate steps, from API interaction to data parsing and structuring. While not insurmountable, these challenges require careful planning and implementation to overcome effectively.
 
 ---
 
@@ -46,6 +57,7 @@ Receiptor is designed with the developer’s ease of use in mind. Here’s how i
 Receiptor provides a clean, straightforward API to interact with Gmail and extract receipt data. With only a few lines of code, developers can set up Receiptor and fetch receipt information directly from their Gmail accounts. Here’s a quick overview:
 
 - **Install Receiptor**: The package can be installed via pip, making it accessible to any Python developer:
+- 
   ```python
     pip install receiptor
     ```
@@ -55,12 +67,14 @@ Receiptor provides a clean, straightforward API to interact with Gmail and extra
 Receiptor requires a Gmail access token, which can be obtained using OAuth2. This token enables secure and authenticated access to Gmail data .
 
 **3. Library Usage**
+
 - **Import required modules**
 ```bash
 from receiptor import Receiptor
 from receiptor.llm_parser.gpt_4o_mini_parser.gpt_4o_mini import DocumentStructureExtractor
 ```
 - **Setup OpenAi Api Keys as follows**
+  
  Pass the API keys into the function.
 
 ```python
@@ -72,16 +86,20 @@ structured_data = DocumentStructureExtractor.structure_document_data(
 Note : org_id is optional , if you are using any organisation project then you may require this org_id , which can be obtained through open ai account dashboard. For more information you can go through open ai official (documentation)[https://platform.openai.com/docs/api-reference/making-requests]
 
 - **Initialize the Receiptor object**
+  
 ```python
 obj = Receiptor()
 ```
 - **Set up Gmail access token**
+  
 Obtain a Gmail access token through the OAuth2 flow. Store this token securely.
 
 ```python
 access_token = "Your_Gmail_access_token_here"
 ```
+
 - **Fetch and process receipt data**
+  
 ```python
 for data in obj.fetch_receipt_data(access_token=access_token):
     print(data)
@@ -111,6 +129,7 @@ Main Data
 "attachment_extension": "pdf"
 }
 ```
+
 Attachment Raw Text
 
 ```python
