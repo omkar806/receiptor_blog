@@ -38,14 +38,14 @@ Receiptor addresses the challenges I faced head-on:
 
 
 ---
-# Why did I Built Receiptor ?
+# Why did I Build Receiptor ?
 
 I built Receiptor because I believe that developers should focus on creating amazing features and applications, not on wrestling with API documentation. By encapsulating my learnings and solutions into this library, I hope to save other developers the time and frustration I experienced.
 Whether you're building the next big fintech app, a simple expense tracker, or anything in between, Receiptor is designed to be your go-to tool for Gmail receipt data extraction. It's my way of contributing to the developer community and making our collective lives a little easier.
 
 ---
 
-### Getting Started
+## Getting Started
 
 **1. Fetching and Parsing Data with Minimal Code**
 
