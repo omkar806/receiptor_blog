@@ -61,6 +61,85 @@ Receiptor provides a clean, straightforward implementation to interact with Gmai
 
 Receiptor requires a Gmail access token, which can be obtained using OAuth2. This token enables secure and authenticated access to Gmail data .
 
+In order to create generate an access token you will have to configure an OAuth application in Google Cloud Platform (GCP) and set up the OAuth 2.0 flow in our application to work with it.
+
+## Configuring an OAuth application in GCP
+
+- Create an account with GCP here: (https://cloud.google.com)[https://cloud.google.com]
+  <img width="1431" alt="image" src="https://github.com/user-attachments/assets/5c52b19a-9b4a-4c30-b37d-b249cc0dd92f">
+
+- Once you open the link click on Console as you can see in the image above.
+- If you have already created a project then you may see the screen below .
+  <img width="1428" alt="image" src="https://github.com/user-attachments/assets/fa43c0f6-835e-4487-9437-5423c2754d82">
+
+  Note : If you are new to GCP try to follow the documentation provided by GCP on how to create your first project : (Documentation)[https://developers.google.com/workspace/guides/create-project]
+  OR
+  You can go through this blog on medium that will simpilfy the process : (Blog)[https://medium.com/@techcontentspecialist/how-to-create-a-gcp-project-fbf412531c65]
+
+- Once you have created your project or you are already logged into one of your project on GCP .
+- Start by navigating to your project API & Services > Credentials in GCP to create a new OAuth application.
+  <img width="1419" alt="image" src="https://github.com/user-attachments/assets/6f55aa6d-bc0b-4bea-91fc-b9ba901f908b">
+- You can directly type in the search bar credentials and you can navigate to credentials by clicking on it .
+- To create the credentials click on this create credentails button , which looks like this .
+  <img width="191" alt="image" src="https://github.com/user-attachments/assets/aa9244d2-5d06-40a0-9890-0893d61aee46">
+- Once you click on create credentials , select oAuth client ID.
+  <img width="1017" alt="image" src="https://github.com/user-attachments/assets/2719b222-2dcd-4740-ad54-a753c0cbcd67">
+ Note - If you are creating an credential for the first time you have to first configure consent screen .
+      - In this case when you click on create credentials , you will be directed to this screen .
+  <img width="1431" alt="image" src="https://github.com/user-attachments/assets/006f71eb-bef1-4ef7-909d-4cae4bd206af">
+      - Once you click on configure consent screen as you can see in the above image , you will be directed to this page .
+  <img width="1424" alt="image" src="https://github.com/user-attachments/assets/1aae1067-8672-44c9-a6b6-7a8e0266a862">
+      - Here you can select External , so that oauth 2 would be available to test on any external user .
+      - Click on create , and you would be directed for further flow .
+  <img width="1416" alt="image" src="https://github.com/user-attachments/assets/7dfc0ba3-fc09-4c7e-a7d7-e68ae1996651">
+      - On the first screen you have to fill the field marked with * compulsorily , like App name , User support email , and in Developer contact information: Email addresses.
+      - Once you fill all the details marked with * , and click on save and continue you will be directed to next screen given below .
+  <img width="1414" alt="image" src="https://github.com/user-attachments/assets/73e9e941-3bc7-4028-8851-f7c9e875044b">
+      - Here we have to add the gmail readonly scopes which is essential to add , to generate an access token to access user's gmail .
+  <img width="1430" alt="image" src="https://github.com/user-attachments/assets/27c2c932-6bf4-47e1-b979-21e5404ced25">
+      - Click on Add or remove scopes , also ensure that you have enabled the gmail api in your project if not , just search in the search bar gmail api and enable the API .
+  <img width="1438" alt="image" src="https://github.com/user-attachments/assets/5cc27af5-faa8-4377-b2ca-4a67c89203d5">
+      - When you select Gmail Api , on click on enable to activate the gmail API .
+  <img width="1437" alt="image" src="https://github.com/user-attachments/assets/396c502d-effb-40ff-b8ea-9c66a60d27f1">
+
+     - Now go back to credentials and click on oauth consent screen.
+  <img width="1417" alt="image" src="https://github.com/user-attachments/assets/a52e8cd8-9c75-47b9-9473-a8af3d08faa9">
+     - Click on Edit App .
+     - Go to the Scopes screen and click on ADD OR REMOVE SCOPES .
+     - In the Filter Section select API:Gmail , and select .../auth/gmail.readonly like given below .
+  <img width="1420" alt="image" src="https://github.com/user-attachments/assets/2a180f1b-daa2-459b-ab2b-819aebad93a6">
+     - Now click on save and continue .
+     - You will be directed to Test users screen .
+  <img width="1383" alt="image" src="https://github.com/user-attachments/assets/f0eada5f-d7ff-4f55-a0e9-a8a3c7580342">
+     - Click on save and continue .
+  
+  Once you have configured the consent screen , continue the process to setup credentials given below .
+
+- Once you click on create credentials , yoo would be directed to this page .
+  <img width="966" alt="image" src="https://github.com/user-attachments/assets/e1501440-cfd3-4055-b3c1-428c144b3057">
+- Here you have to select your application type . I am working on a blog to let you know how to setup and utilise oauth 2 for different type of applications . In this blog I we will go through how to setup oauth2 credentials for web application .
+- Once you click on web application , you would shown following details .
+  <img width="1438" alt="image" src="https://github.com/user-attachments/assets/eeb93f23-1f8e-4703-bf8f-41a718d3d101">
+- Here you have to fill 2 main sections Name and Authorized redirect URIs .
+- Initially you can type the name of your choice like receiptor_test , or any name of your choice .
+  <img width="1417" alt="image" src="https://github.com/user-attachments/assets/14300f5b-75e3-484e-b670-a83dc282dbba">
+- Now just click on create , regarding the redirect URI we will see how can we add this redirect URI ,and the credentials would be created .
+  <img width="1122" alt="image" src="https://github.com/user-attachments/assets/74d4865e-5d3f-471e-9ab4-d976af937815">
+- As you can see the credentials is created and you are provided with CLIENT ID , CLIENT ID , you can also download these credentials locally  by clicking on DOWNLOAD JSON.
+
+### Now we will setup a simple FastApi App , where you can generate an access token to access your gmail data .
+- 
+
+
+  
+
+  
+
+ 
+
+
+
+
 **3. Library Usage**
 
 - **Import required modules**
