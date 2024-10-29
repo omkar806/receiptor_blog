@@ -115,7 +115,7 @@ In order to create generate an access token you will have to configure an OAuth 
   
   Once you have configured the consent screen , continue the process to setup credentials given below .
 
-- Once you click on create credentials , yoo would be directed to this page .
+- Once you click on create credentials , you would be directed to this page .
   <img width="966" alt="image" src="https://github.com/user-attachments/assets/e1501440-cfd3-4055-b3c1-428c144b3057">
 - Here you have to select your application type . I am working on a blog to let you know how to setup and utilise oauth 2 for different type of applications . In this blog I we will go through how to setup oauth2 credentials for web application .
 - Once you click on web application , you would shown following details .
@@ -125,21 +125,72 @@ In order to create generate an access token you will have to configure an OAuth 
   <img width="1417" alt="image" src="https://github.com/user-attachments/assets/14300f5b-75e3-484e-b670-a83dc282dbba">
 - Now just click on create , regarding the redirect URI we will see how can we add this redirect URI ,and the credentials would be created .
   <img width="1122" alt="image" src="https://github.com/user-attachments/assets/74d4865e-5d3f-471e-9ab4-d976af937815">
-- As you can see the credentials is created and you are provided with CLIENT ID , CLIENT ID , you can also download these credentials locally  by clicking on DOWNLOAD JSON.
+- As you can see the credentials is created and you are provided with CLIENT ID , CLIENT SECRET , you can also download these credentials locally  by clicking on DOWNLOAD JSON.
 
 ### Now we will setup a simple FastApi App , where you can generate an access token to access your gmail data .
-- 
+- Let's first install the libraries , required .
+```python
+pip install fastapi
+pip install python-dotenv
+```
+- Now we are setting up some simple API endpoints . Here you will be required to save the CLIENT ID and CLIENT SECRET into a .env file.
+- Below is the code you can copy paste .
+```python
+
+from dotenv import load_dotenv
+from fastapi import FastAPI
+import os
+import webbrowser
+
+app = FastAPI()
+load_dotenv()
+
+GOOGLE_CLIENT_ID = os.getenv('GOOGLE_CLIENT_ID')
+GOOGLE_CLIENT_SECRET =os.getenv('GOOGLE_CLIENT_SECRET')
+GOOGLE_REDIRECT_URI = os.getenv('GOOGLE_REDIRECT_URI')
+
+url = "[https://www.google.com](https://accounts.google.com/o/oauth2/auth?response_type=code&client_id={GOOGLE_CLIENT_ID}&redirect_uri={GOOGLE_REDIRECT_URI}&scope=openid%20profile%20email%20https://www.googleapis.com/auth/gmail.readonly&access_type=offline)"
+
+webbrowser.open(url)
+
+@app.get("/")
+async def login_google():
+    # oauth_url = f"https://accounts.google.com/o/oauth2/auth?response_type=code&client_id={GOOGLE_CLIENT_ID}&redirect_uri={GOOGLE_REDIRECT_URI}&scope=openid%20profile%20email&access_type=offline"
+    
+    #Below is the URL to prompt the user to login to his specified gmail account and also give a readonly access to his gmail
+    oauth_url_hr = f"https://accounts.google.com/o/oauth2/auth?response_type=code&client_id={GOOGLE_CLIENT_ID}&redirect_uri={GOOGLE_REDIRECT_URI}&scope=openid%20profile%20email%20https://www.googleapis.com/auth/gmail.readonly&access_type=offline"
+    return {
+        "url_hr": oauth_url_hr
+    }
 
 
+
+@app.get("/test")
+async def test_google(code:str):
+
+    # token_url = "https://accounts.google.com/o/oauth2/token"
+    print("Printing authorisation token")
+    print(code)
+    token_url="https://oauth2.googleapis.com/token"
+    data = {
+        "code": code,
+        "client_id": GOOGLE_CLIENT_ID,
+        "client_secret": GOOGLE_CLIENT_SECRET,
+        "redirect_uri": GOOGLE_REDIRECT_URI,
+        "grant_type": "authorization_code",
+        "access_type": "offline"
+    }
+    response = requests.post(token_url, data=data)
+    
+    access_token = response.json().get("access_token")
+    print("printing access token , yo yo test")
+    print(access_token)
+    return {"access_token":response.json()}
+
+
+```
+- Above 
   
-
-  
-
- 
-
-
-
-
 **3. Library Usage**
 
 - **Import required modules**
